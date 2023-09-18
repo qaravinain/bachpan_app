@@ -65,8 +65,8 @@ class LoginUserState extends State<LoginUser> {
     print(response.statusCode);
     if (response.statusCode == 200) {
       final token = json.decode(response.body);
-      print(token["token"]);
       await storage.write(key: "secured_token", value: token["token"]);
+      await storage.write(key: "secured_email", value: email);
       await storage.write(key: "token_exist", value: "True");
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const Welcome()));
